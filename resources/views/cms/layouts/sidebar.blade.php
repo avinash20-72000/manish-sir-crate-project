@@ -36,6 +36,16 @@
             </li>
         @endcan
 
+        <!-- Crate -->
+        @if(isset(auth()->user()->super_admin))
+            <li class="nav-item @if(Route::currentRouteName() == 'crate.index') active @endif">
+                <a class="nav-link" href="{{ route('crate.index') }}">
+                    <i class="fa-cubes fa menu-icon"></i>
+                    <span class="menu-title">Crate</span>
+                </a>
+            </li>
+        @endif
+
         <!-- Company -->
         @if(isset(auth()->user()->super_admin))
             <li class="nav-item @if(Route::currentRouteName() == 'company.index') active @endif">

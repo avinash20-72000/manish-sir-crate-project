@@ -8,6 +8,7 @@ use App\Http\Controllers\cms\DashboardController;
 use App\Http\Controllers\cms\PermissionController;
 use App\Http\Controllers\cms\ActivityLogsController;
 use App\Http\Controllers\cms\CompanyController;
+use App\Http\Controllers\cms\CrateController;
 
 Route::get('/dashboard',                    [DashboardController::class,'dashboard'])->name('dashboard');
 
@@ -30,6 +31,9 @@ Route::put('store-profile,{id}',            [UserController::class,'storeProfile
 
 //Company
 Route::resource('company',                  CompanyController::class);
+
+//Crate
+Route::resource('crate',                    CrateController::class);
 
 //Activity logs
 Route::get("activity/logs",                 [ActivityLogsController::class,'index'])->name("activityLogs");
