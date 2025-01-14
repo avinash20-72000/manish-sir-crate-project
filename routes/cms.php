@@ -7,7 +7,7 @@ use App\Http\Controllers\cms\ModuleController;
 use App\Http\Controllers\cms\DashboardController;
 use App\Http\Controllers\cms\PermissionController;
 use App\Http\Controllers\cms\ActivityLogsController;
-
+use App\Http\Controllers\cms\CompanyController;
 
 Route::get('/dashboard',                    [DashboardController::class,'dashboard'])->name('dashboard');
 
@@ -28,4 +28,8 @@ Route::get("logout/switch/user",            [UserController::class,'logoutSwitch
 Route::get('profile/{id}',                  [UserController::class,'profile'])->name('userProfile');
 Route::put('store-profile,{id}',            [UserController::class,'storeProfile'])->name('storeProfile');
 
+//Company
+Route::resource('company',                  CompanyController::class);
+
+//Activity logs
 Route::get("activity/logs",                 [ActivityLogsController::class,'index'])->name("activityLogs");

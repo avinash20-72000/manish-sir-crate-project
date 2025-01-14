@@ -34,6 +34,59 @@ CREATE TABLE `activity_logs` (
 
 /*Data for the table `activity_logs` */
 
+/*Table structure for table `companies` */
+
+DROP TABLE IF EXISTS `companies`;
+
+CREATE TABLE `companies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `contact_number` varchar(15) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `companies` */
+
+/*Table structure for table `crate_transfers` */
+
+DROP TABLE IF EXISTS `crate_transfers`;
+
+CREATE TABLE `crate_transfers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `crate_id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `status` enum('sent','received') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `crate_id` (`crate_id`),
+  KEY `company_id` (`company_id`),
+  CONSTRAINT `crate_transfers_ibfk_1` FOREIGN KEY (`crate_id`) REFERENCES `crates` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `crate_transfers_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `crate_transfers` */
+
+/*Table structure for table `crates` */
+
+DROP TABLE IF EXISTS `crates`;
+
+CREATE TABLE `crates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `barcode` varchar(255) NOT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `status` enum('available','assign') DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `barcode` (`barcode`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `crates` */
+
 /*Table structure for table `failed_jobs` */
 
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -168,9 +221,6 @@ CREATE TABLE `role_user` (
 
 /*Data for the table `role_user` */
 
-insert  into `role_user`(`id`,`user_id`,`role_id`) values 
-(1,1,1);
-
 /*Table structure for table `roles` */
 
 DROP TABLE IF EXISTS `roles`;
@@ -207,12 +257,11 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`profile_pic`,`remember_token`,`is_active`,`super_admin`,`created_at`,`updated_at`) values 
-(1,'admin','admin@gmail.com',NULL,'$2y$12$Rcy.WoV1f.bTaJYNAISMPOV/316RrHUdhofjtmFIyMTXrl5hXZDmq',NULL,NULL,1,NULL,NULL,NULL),
 (2,'avinash','avinash@gmail.com',NULL,'$2y$12$Rcy.WoV1f.bTaJYNAISMPOV/316RrHUdhofjtmFIyMTXrl5hXZDmq',NULL,NULL,1,1,NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

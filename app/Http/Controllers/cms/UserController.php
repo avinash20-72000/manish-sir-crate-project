@@ -227,7 +227,7 @@ class UserController extends Controller
         saveLogs($data);
         $user->delete();
         Session::flash("success", "User Account Deleted");
-        return redirect(route("user.index"));
+        return response()->json(['message' => 'Data Deleted'], 200);
     }
 
     public function changePassword(Request $request)

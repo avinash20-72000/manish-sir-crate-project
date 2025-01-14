@@ -36,6 +36,16 @@
             </li>
         @endcan
 
+        <!-- Company -->
+        @if(isset(auth()->user()->super_admin))
+            <li class="nav-item @if(Route::currentRouteName() == 'company.index') active @endif">
+                <a class="nav-link" href="{{ route('company.index') }}">
+                    <i class="fa-building fa menu-icon"></i>
+                    <span class="menu-title">Company</span>
+                </a>
+            </li>
+        @endif
+
         <!-- Activity  Log -->
         @if(isset(auth()->user()->super_admin))
             <li class="nav-item @if(Route::currentRouteName() == 'activityLogs') active @endif">
