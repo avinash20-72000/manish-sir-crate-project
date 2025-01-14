@@ -21,8 +21,12 @@ class CrateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id=0;
+        if(request()->has('id')){$id=request()->id;}
+      
         return [
-            'barcode' => 'required|string|unique:crates,barcode',
+            'barcode' => "required|string|unique:crates,barcode,$id,id",
+            'size'    => 'required|string|max:255',
         ];
     }
 }

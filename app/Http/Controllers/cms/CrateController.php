@@ -102,7 +102,7 @@ class CrateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CrateRequest $request, string $id)
     {
         $crate              =       Crate::find($id);
         if(empty($crate))
