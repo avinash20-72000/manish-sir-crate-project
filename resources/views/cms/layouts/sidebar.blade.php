@@ -37,14 +37,14 @@
         @endcan
 
         <!-- Crate Management -->
-        <li class="nav-item @if (in_array(Route::currentRouteName(), ['crate.index', 'crate.create', 'crateTransferForm'])) active @endif">
-            <a class="nav-link @if (in_array(Route::currentRouteName(), ['crate.index', 'crate.create', 'crateTransferForm'])) collapsed @endif" data-toggle="collapse"
+        <li class="nav-item @if (in_array(Route::currentRouteName(), ['crate.index', 'crate.create', 'crateTransferForm','crateReceiveForm'])) active @endif">
+            <a class="nav-link @if (in_array(Route::currentRouteName(), ['crate.index', 'crate.create', 'crateTransferForm','crateReceiveForm'])) collapsed @endif" data-toggle="collapse"
                 href="#crate-management" aria-expanded="false" aria-controls="crate-management">
                 <i class="fa-cubes fa menu-icon"></i>
                 <span class="menu-title">Crate Management &nbsp;</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse @if (in_array(Route::currentRouteName(), ['crate.index', 'crate.create', 'crateTransferForm'])) show @endif" id="crate-management">
+            <div class="collapse @if (in_array(Route::currentRouteName(), ['crate.index', 'crate.create', 'crateTransferForm','crateReceiveForm'])) show @endif" id="crate-management">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link @if (Route::currentRouteName() == 'crate.index') active @endif"
                             href="{{ route('crate.index') }}">Crate</a></li>
@@ -52,24 +52,12 @@
                             href="{{ route('crate.create') }}">Add Crate</a></li>
                     <li class="nav-item"> <a class="nav-link @if (Route::currentRouteName() == 'crateTransferForm') active @endif"
                             href="{{ route('crateTransferForm') }}">Crate Transfer</a></li>
-                    {{-- <li class="nav-item"> <a class="nav-link @if (Route::currentRouteName() == 'listCompaniesWithCrates') active @endif"
-                            href="{{ route('listCompaniesWithCrates') }}">Company With Crate</a></li> --}}
+                    <li class="nav-item"> <a class="nav-link @if (Route::currentRouteName() == 'crateReceiveForm') active @endif"
+                            href="{{ route('crateReceiveForm') }}">Crate Receive</a></li>
 
                 </ul>
             </div>
         </li>
-
-
-
-        <!-- Crate -->
-        {{-- @if(isset(auth()->user()->super_admin))
-            <li class="nav-item @if(Route::currentRouteName() == 'crate.index') active @endif">
-                <a class="nav-link" href="{{ route('crate.index') }}">
-                    <i class="fa-cubes fa menu-icon"></i>
-                    <span class="menu-title">Crate</span>
-                </a>
-            </li>
-        @endif --}}
 
         <!-- Company -->
         @if(auth()->user()->hasRole('admin'))
@@ -80,13 +68,6 @@
                 </a>
             </li>
         @endif
-
-        {{-- <li class="nav-item @if(Route::currentRouteName() == 'crateTransferForm') active @endif">
-            <a class="nav-link" href="{{ route('crateTransferForm') }}">
-                <i class="fa-list-alt fa menu-icon"></i>
-                <span class="menu-title">Manage Crate Transfer</span>
-            </a>
-        </li> --}}
 
         <!-- Activity  Log -->
         @if(isset(auth()->user()->super_admin))

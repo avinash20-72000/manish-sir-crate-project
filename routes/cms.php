@@ -39,7 +39,8 @@ Route::resource('crate',                    CrateController::class);
 //Crate Transfer
 Route::get('transfer-form',                 [CrateTransferController::class,'crateTransferForm'])->name('crateTransferForm');
 Route::post('crate-transfer-store',         [CrateTransferController::class,'crateTransferStore'])->name('crateTransferStore');
-// Route::get('list-companies-with-crates',    [CrateTransferController::class,'listCompaniesWithCrates'])->name('listCompaniesWithCrates');
+Route::get('receive-form',                  [CrateTransferController::class,'crateReceiveForm'])->name('crateReceiveForm');
+Route::post('crate-receive',                [CrateTransferController::class,'crateReceive'])->name('crateReceive');
 
 //Activity logs
 Route::get("activity/logs",                 [ActivityLogsController::class,'index'])->name("activityLogs");
