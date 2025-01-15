@@ -21,6 +21,16 @@ class CrateController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('status',function($data){
+                    if($data->status == 'available')
+                    {
+                        return '<label class="badge badge-outline-success">'. ucfirst($data->status) .'</label>';
+                    }
+                    else{
+                        return '<label class="badge badge-outline-warning">'. ucfirst($data->status) .'</label>';
+
+                    }
+                })
                 ->editColumn('action', function ($data) {
                     $editUrl        =   route('crate.edit', ['crate' => $data->id]);
                     $deleteUrl      =   route('crate.destroy', ['crate' => $data->id]);
@@ -35,7 +45,7 @@ class CrateController extends Controller
                     $btn            .=  '</div>';
                     return $btn;
                 })
-                ->rawColumns([ 'action'])
+                ->rawColumns(['status', 'action'])
                 ->make(true);
         }
         return view("cms.crate.index");

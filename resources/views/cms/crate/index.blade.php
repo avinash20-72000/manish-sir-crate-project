@@ -33,6 +33,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Barcode</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -64,6 +65,10 @@
                     {
                         data: 'barcode',
                         name: 'barcode',
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
                     },
                     {
                         data: 'action',
