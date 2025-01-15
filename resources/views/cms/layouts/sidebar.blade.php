@@ -56,6 +56,13 @@
             </li>
         @endif
 
+        <li class="nav-item @if(Route::currentRouteName() == 'crateTransferForm') active @endif">
+            <a class="nav-link" href="{{ route('crateTransferForm') }}">
+                <i class="fa-list-alt fa menu-icon"></i>
+                <span class="menu-title">Manage Crate Transfer</span>
+            </a>
+        </li>
+
         <!-- Activity  Log -->
         @if(isset(auth()->user()->super_admin))
             <li class="nav-item @if(Route::currentRouteName() == 'activityLogs') active @endif">

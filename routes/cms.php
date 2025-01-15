@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\cms\RoleController;
 use App\Http\Controllers\cms\UserController;
+use App\Http\Controllers\cms\CrateController;
 use App\Http\Controllers\cms\ModuleController;
+use App\Http\Controllers\cms\CompanyController;
 use App\Http\Controllers\cms\DashboardController;
 use App\Http\Controllers\cms\PermissionController;
 use App\Http\Controllers\cms\ActivityLogsController;
-use App\Http\Controllers\cms\CompanyController;
-use App\Http\Controllers\cms\CrateController;
+use App\Http\Controllers\cms\CrateTransferController;
 
 Route::get('/dashboard',                    [DashboardController::class,'dashboard'])->name('dashboard');
 
@@ -34,6 +35,10 @@ Route::resource('company',                  CompanyController::class);
 
 //Crate
 Route::resource('crate',                    CrateController::class);
+
+//Crate Transfer
+Route::get('transfer-form',                 [CrateTransferController::class,'crateTransferForm'])->name('crateTransferForm');
+Route::post('crate-transfer-store',         [CrateTransferController::class,'crateTransferStore'])->name('crateTransferStore');
 
 //Activity logs
 Route::get("activity/logs",                 [ActivityLogsController::class,'index'])->name("activityLogs");

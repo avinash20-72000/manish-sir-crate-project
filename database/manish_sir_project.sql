@@ -46,9 +46,14 @@ CREATE TABLE `companies` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `companies` */
+
+insert  into `companies`(`id`,`name`,`email`,`contact_number`,`created_at`,`updated_at`) values 
+(2,'honda','honda@gmail.com','1212121212','2025-01-15 04:15:46','2025-01-15 04:15:46'),
+(3,'kia','kia@gmail.com','1212121212','2025-01-15 04:16:06','2025-01-15 04:16:06'),
+(4,'toyota','toyota@gmail.com','8989898989','2025-01-15 04:16:34','2025-01-15 04:16:34');
 
 /*Table structure for table `crate_transfers` */
 
@@ -58,7 +63,6 @@ CREATE TABLE `crate_transfers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `crate_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
-  `status` enum('sent','received') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
@@ -83,9 +87,12 @@ CREATE TABLE `crates` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `barcode` (`barcode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `crates` */
+
+insert  into `crates`(`id`,`barcode`,`size`,`status`,`created_at`,`updated_at`) values 
+(2,'12362','12','available','2025-01-14 12:20:25','2025-01-14 12:20:25');
 
 /*Table structure for table `failed_jobs` */
 
@@ -257,12 +264,13 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`profile_pic`,`remember_token`,`is_active`,`super_admin`,`created_at`,`updated_at`) values 
-(2,'avinash','avinash@gmail.com',NULL,'$2y$12$Rcy.WoV1f.bTaJYNAISMPOV/316RrHUdhofjtmFIyMTXrl5hXZDmq',NULL,NULL,1,1,NULL,NULL);
+(2,'avinash','avinash@gmail.com',NULL,'$2y$12$Rcy.WoV1f.bTaJYNAISMPOV/316RrHUdhofjtmFIyMTXrl5hXZDmq',NULL,NULL,1,1,NULL,NULL),
+(5,'admin','admin@gmail.com',NULL,'$2y$10$Tv16VZoIhK97oGfueylmGOv912BBzNXuy68jV9pqzYzSAuUcOW.BW',NULL,NULL,1,NULL,'2025-01-14 11:59:30','2025-01-14 11:59:39');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
