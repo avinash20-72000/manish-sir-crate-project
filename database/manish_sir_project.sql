@@ -63,6 +63,7 @@ CREATE TABLE `crate_transfers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `crate_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
+  `transfer_date` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
@@ -70,9 +71,18 @@ CREATE TABLE `crate_transfers` (
   KEY `company_id` (`company_id`),
   CONSTRAINT `crate_transfers_ibfk_1` FOREIGN KEY (`crate_id`) REFERENCES `crates` (`id`) ON DELETE CASCADE,
   CONSTRAINT `crate_transfers_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `crate_transfers` */
+
+insert  into `crate_transfers`(`id`,`crate_id`,`company_id`,`transfer_date`,`created_at`,`updated_at`) values 
+(1,2,2,'2025-01-14','2025-01-15 05:15:09','2025-01-15 11:15:29'),
+(2,3,2,'2025-01-15','2025-01-15 05:29:55','2025-01-15 11:15:19'),
+(3,5,2,'2025-01-15','2025-01-15 05:29:55','2025-01-15 11:15:18'),
+(4,6,2,'2025-01-15','2025-01-15 05:29:55','2025-01-15 11:15:18'),
+(5,7,2,'2025-01-15','2025-01-15 05:29:55','2025-01-15 11:15:16'),
+(6,4,2,'2025-01-15','2025-01-15 05:45:00','2025-01-15 05:45:00'),
+(7,8,3,'2025-01-15','2025-01-15 06:20:34','2025-01-15 06:20:34');
 
 /*Table structure for table `crates` */
 
@@ -87,12 +97,18 @@ CREATE TABLE `crates` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `barcode` (`barcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `crates` */
 
 insert  into `crates`(`id`,`barcode`,`size`,`status`,`created_at`,`updated_at`) values 
-(2,'12362','12','available','2025-01-14 12:20:25','2025-01-14 12:20:25');
+(2,'12362','12','assign','2025-01-14 12:20:25','2025-01-15 05:15:09'),
+(3,'12351','45','assign','2025-01-15 05:27:28','2025-01-15 05:29:55'),
+(4,'12350','25','assign','2025-01-15 05:27:41','2025-01-15 05:45:00'),
+(5,'12346','58','assign','2025-01-15 05:27:49','2025-01-15 05:29:55'),
+(6,'12357','14','assign','2025-01-15 05:28:05','2025-01-15 05:29:55'),
+(7,'12360','25','assign','2025-01-15 05:28:20','2025-01-15 05:29:55'),
+(8,'12345','23','assign','2025-01-15 05:46:46','2025-01-15 06:20:34');
 
 /*Table structure for table `failed_jobs` */
 
@@ -224,9 +240,12 @@ CREATE TABLE `role_user` (
   `user_id` int(11) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `role_user` */
+
+insert  into `role_user`(`id`,`user_id`,`role_id`) values 
+(2,5,1);
 
 /*Table structure for table `roles` */
 

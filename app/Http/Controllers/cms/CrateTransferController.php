@@ -16,7 +16,7 @@ class CrateTransferController extends Controller
         $data['companies']      =   Company::pluck('name','id')->toArray();
         $data['crates']         =   Crate::where('status','available')->pluck('barcode', 'id')->toArray();
 
-        return view('cms.crate.transferForm',$data);
+        return view('cms.crateTransfer.transferForm',$data);
     }
 
     public function crateTransferStore(Request $request)
@@ -35,11 +35,19 @@ class CrateTransferController extends Controller
 
             CrateTransfer::create([
                 'company_id' => $companyId,
-                'crate_id' => $crateId
+                'crate_id' => $crateId,
+                'transfer_date'=>now()
             ]);
         }
 
         return redirect()->back()->with('success', 'Crates successfully assigned to the company!');
 
     }
+
+    // public function listCompaniesWithCrates()
+    // {
+    //     $data['companies']  =   Company::whereHas('crateTransfers')->withCount(['crateTransfers'])->get();
+
+    //     return view('cms.crateTransfer.companyCrateList',$data);
+    // }
 }

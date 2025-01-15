@@ -20,7 +20,16 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Crate form</h4>
+                <div class="row">
+                    <div class="col-10">
+                        <h4 class="card-title">Crate Form</h4>
+                    </div>
+                    @if(!empty($object->status))
+                        <div class="col-2 text-right">
+                            <label class="badge badge-success"> {{ ucfirst($object->status) }}</label>
+                        </div>
+                    @endif
+                </div>
 
                 {!! Form::model($object, [
                     'url' => $url,
